@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "{{PROJECT_NAME}}"
+message: "If you use this software, please cite it using the metadata below."
+type: software
+abstract: >-
+  {{ABSTRACT}}
+authors:
+  - given-names: Mert
+    family-names: Torun
+    email: info@mtorun0x7cd.com
+    affiliation: TH Köln
+version: 1.0.0
+date-released: "{{YEAR}}-01-01"
+license: MIT
+repository-code: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
+url: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
+keywords:
+  - {{KEYWORDS}}
+# Add a preferred-citation block of type article/conference-paper only when an
+# accompanying publication exists.

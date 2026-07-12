@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+    <style>
+        :root {
+            --text-title: #0f172a;
+            --text-subtitle: #475569;
+            --text-badge: #475569;
+            --accent: #2563EB;
+            --badge-border: #cbd5e1;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-title: #ffffff;
+                --text-subtitle: #a0aec0;
+                --text-badge: #718096;
+                --accent: #2563EB;
+                --badge-border: #2C3E50;
+            }
+        }
+        .frame { stroke: var(--accent); stroke-opacity: 0.15; }
+        .title { fill: var(--text-title); }
+        .subtitle { fill: var(--text-subtitle); }
+        .divider { stroke: var(--accent); }
+        .badge-fill { fill: var(--accent); fill-opacity: 0.12; stroke: var(--accent); stroke-opacity: 0.3; }
+        .badge-text-accent { fill: var(--text-title); }
+        .badge-outline { stroke: var(--badge-border); }
+        .badge-text-muted { fill: var(--text-badge); }
+    </style>
+
+    <rect x="20" y="20" width="1160" height="590" rx="16" fill="none" class="frame" stroke-width="2"/>
+
+    <g transform="translate(600, 300)">
+        <text x="0" y="0" font-family="'SF Pro Display', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif" font-size="56" font-weight="900" letter-spacing="0.5" class="title" text-anchor="middle">{{PROJECT_NAME}}</text>
+
+        <line x1="-220" y1="45" x2="220" y2="45" class="divider" stroke-width="3" stroke-linecap="round"/>
+
+        <text x="0" y="95" font-family="'SF Pro Text', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif" font-size="22" font-weight="500" class="subtitle" letter-spacing="0.5" text-anchor="middle">{{TAGLINE}}</text>
+
+        <g transform="translate(-187.5, 145)">
+            <rect x="0" y="0" width="180" height="40" rx="8" class="badge-fill" stroke-width="1.5"/>
+            <text x="90" y="25" font-family="'SF Pro Text', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif" font-size="13" font-weight="700" class="badge-text-accent" text-anchor="middle" letter-spacing="1">{{KEYWORDS}}</text>
+        </g>
+        <g transform="translate(7.5, 145)">
+            <rect x="0" y="0" width="180" height="40" rx="8" fill="none" class="badge-outline" stroke-width="1.5"/>
+            <text x="90" y="25" font-family="'SF Pro Text', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif" font-size="13" font-weight="700" class="badge-text-muted" text-anchor="middle" letter-spacing="1">@mtorun0x7cd</text>
+        </g>
+    </g>
+</svg>

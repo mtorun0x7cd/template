@@ -1,0 +1,23 @@
+name: Factual correction or broken link
+description: Report a factual error, broken link, or documentation issue.
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report a factual error, broken link, or documentation issue. For security matters, follow SECURITY.md instead of opening a public issue.
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: File and line, or the URL and section, where the issue appears.
+      placeholder: "README.md:42 — or a link"
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correction
+      description: What is incorrect, and what should it say instead?
+    validations:
+      required: true

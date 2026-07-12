@@ -1,0 +1,12 @@
+# Instances add the update block(s) for the stack they actually carry (pip, maven,
+# npm, nuget, composer, ...); github-actions is present in every repo. Frozen
+# coursework archives stay github-actions-only by policy — Dependabot does not run
+# version updates on archived repositories, so a manifest block there would be inert.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci

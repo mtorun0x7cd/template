@@ -1,0 +1,17 @@
+# Build artifacts are isolated under .tmp.nosync/ (the .nosync suffix keeps iCloud
+# from syncing them) and are never committed.
+.tmp.nosync/
+*.nosync
+
+# OS files
+.DS_Store
+._*
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Add language-specific build outputs and dependency directories for the
+# toolchain actually used (e.g. target/, __pycache__/, node_modules/, bin/, obj/).

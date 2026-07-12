@@ -1,0 +1,18 @@
+# Let Git detect text vs. binary and normalize line endings on commit.
+* text=auto eol=lf
+
+# Documentation and tooling dotfiles.
+*.md           text eol=lf
+*.cff          text eol=lf
+*.yml          text eol=lf
+*.svg          text eol=lf
+.editorconfig  text eol=lf
+.gitignore     text eol=lf
+.gitattributes text eol=lf
+
+# Binary assets.
+*.png  binary
+*.pdf  binary
+
+# Add source/binary rules for the languages and assets actually present, and
+# remove any rule whose glob matches no tracked file.
