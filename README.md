@@ -73,7 +73,7 @@ See [`SECURITY.md`](SECURITY.md) for the security stance and how to report issue
 
 Released under the [MIT License](LICENSE).
 
-## Author
+## Contact
 
 **Mert Torun, M.Sc.** — IT Security Architect · Systems Engineer
 mtorun0x7cd · Research & Development
