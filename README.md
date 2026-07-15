@@ -75,7 +75,7 @@ Released under the [MIT License](LICENSE).
 
 ## Contact
 
-**Mert Torun, M.Sc.** — IT Security Architect · Systems Engineer
+**Mert Torun, M.Sc.** — IT Security Architect · Systems Engineer  
 mtorun0x7cd · Research & Development
 
 - **Email**: [info@mtorun0x7cd.com](mailto:info@mtorun0x7cd.com)
