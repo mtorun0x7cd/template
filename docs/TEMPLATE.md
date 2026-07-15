@@ -28,9 +28,10 @@ than short values: `{{FEATURE}}`, `{{ARCHITECTURE}}`, `{{TECH_STACK}}`, `{{TREE}
    `LICENSE`, and `docs/social_preview.svg`; confirm none remain with `git grep '{{'`.
 2. Set `{{STATUS}}` to `Active` or `Archived`, and align `CONTRIBUTING.md`
    accordingly: an active project accepts contributions; an archive does not.
-3. Regenerate the social-preview images with `./docs/render.sh` (requires Node,
-   ImageMagick, and Google Chrome), then upload `docs/social_card.png` under the
-   repository's Settings → Social preview.
+3. Replace the placeholder icon group in `docs/social_preview.svg` with a bespoke
+   line-art glyph for the project, then regenerate the social-preview images with
+   `./docs/render.sh` (requires Node, ImageMagick, and Google Chrome) and upload
+   `docs/social_card.png` under the repository's Settings → Social preview.
 4. Add the project's dependency ecosystem to `.github/dependabot.yml` and the
    build and test steps to `.github/workflows/ci.yml`.
 5. Add stopwords for any disclosed demo credentials to `.gitleaks.toml`.
