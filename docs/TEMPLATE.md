@@ -15,7 +15,8 @@ replace the placeholder tokens below and complete the setup steps. Tokens use th
 | `{{YEAR}}` | Copyright and release year. |
 | `{{CONTEXT}}` | Course, thesis, or research context. |
 | `{{ABSTRACT}}` | Short abstract for `CITATION.cff`. |
-| `{{KEYWORDS}}` | Comma-separated keywords. |
+| `{{KEYWORDS}}` | Citation keywords, one per line as a `keywords:` sequence item in `CITATION.cff`. |
+| `{{BADGE_LABEL}}` | Social-preview badge text; a short label such as `ACADEMIC ARCHIVE`. Long text overflows the fixed-width badge. |
 | `{{REPO_SLUG}}` | `owner/name` GitHub slug. |
 
 The README body also carries free-form section tokens filled with prose rather

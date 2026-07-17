@@ -58,7 +58,7 @@
 
         <g transform="translate(-187.5, 138)">
             <rect x="0" y="0" width="180" height="36" rx="8" class="badge-rect-dev" stroke-width="1.5"/>
-            <text x="90" y="23" font-family="'SF Pro Text', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" class="text-badge-dev" text-anchor="middle">{{KEYWORDS}}</text>
+            <text x="90" y="23" font-family="'SF Pro Text', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" class="text-badge-dev" text-anchor="middle">{{BADGE_LABEL}}</text>
         </g>
         <g transform="translate(7.5, 138)">
             <rect x="0" y="0" width="180" height="36" rx="8" fill="none" class="badge-rect-gh" stroke-width="1.5"/>
