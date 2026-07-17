@@ -17,7 +17,7 @@ replace the placeholder tokens below and complete the setup steps. Tokens use th
 | `{{ABSTRACT}}` | Short abstract for `CITATION.cff`. |
 | `{{KEYWORDS}}` | Citation keywords, one per line as a `keywords:` sequence item in `CITATION.cff`. |
 | `{{BADGE_LABEL}}` | Social-preview badge text; a short label such as `ACADEMIC ARCHIVE`. Long text overflows the fixed-width badge. |
-| `{{REPO_SLUG}}` | `owner/name` GitHub slug. |
+| `{{REPO_SLUG}}` | Repository name — the `name` half of the `owner/name` slug; the owner is already fixed in the URLs. |
 
 The README body also carries free-form section tokens filled with prose rather
 than short values: `{{FEATURE}}`, `{{ARCHITECTURE}}`, `{{TECH_STACK}}`, `{{TREE}}`,
