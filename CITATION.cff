@@ -15,6 +15,6 @@ license: MIT
 repository-code: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
 url: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
 keywords:
-  - {{KEYWORDS}}
+  - "{{KEYWORDS}}"
 # Add a preferred-citation block of type article/conference-paper only when an
 # accompanying publication exists.
