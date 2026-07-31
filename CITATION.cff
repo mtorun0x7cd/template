@@ -10,7 +10,6 @@ authors:
     email: info@mtorun0x7cd.com
     affiliation: TH Köln
 version: 1.0.0
-date-released: "{{YEAR}}-01-01"
 license: MIT
 repository-code: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
 url: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
