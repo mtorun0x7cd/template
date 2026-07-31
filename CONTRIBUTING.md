@@ -5,6 +5,11 @@ welcome. If this repository is published as a frozen archive of completed work,
 replace this file's stance accordingly: an archive is preserved as a record and
 does not accept feature contributions.
 
+## Local setup
+
+Enable the staged-secret scan once per clone with
+`git config core.hooksPath .githooks`; it requires the `gitleaks` CLI.
+
 ## Reporting
 
 - **Security or integrity issues:** follow [`SECURITY.md`](SECURITY.md).
