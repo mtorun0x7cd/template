@@ -9,5 +9,5 @@ description = "Documented configuration placeholders in examples and documentati
 regexTarget = "match"
 regexes = [
   '''<[a-z0-9._-]*(password|secret|key|token|username)[a-z0-9._-]*>''',
-  # Add stopwords here for any disclosed educational demo credentials this project ships.
+  # Add an allowlist regex here for any disclosed educational demo credential this project ships.
 ]

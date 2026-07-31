@@ -47,8 +47,17 @@ them explicitly.
    `docs/social_card.png` under the repository's Settings → Social preview.
 5. Add the project's dependency ecosystem to `.github/dependabot.yml` and the
    build and test steps to `.github/workflows/ci.yml`.
-6. Add stopwords for any disclosed demo credentials to `.gitleaks.toml`.
-7. Configure repository settings: Issues enabled for an active project and
-   disabled for an archive; leave Wiki and Projects off unless used.
-8. Delete `docs/TEMPLATE.md` and the pointer line in `README.md`; `git grep '{{'`
+6. Confirm the licence. MIT is the default and is stated in four places —
+   `LICENSE`, the README badge, the README `## License` line, and `CITATION.cff`'s
+   `license:` field. A project under a different licence must change all four; the
+   value is untokenised, so no `{{...}}` search catches a missed one.
+7. Add an allowlist regex for any disclosed demo credential to `.gitleaks.toml`,
+   and enable the pre-commit secret scan in the clone with
+   `git config core.hooksPath .githooks` (requires the `gitleaks` CLI).
+8. Configure repository settings: set the description and the Homepage field to
+   `https://mtorun0x7cd.com`; Issues enabled for an active project and disabled
+   for an archive; leave Wiki, Projects, and Discussions off unless used. For an
+   archive, delete `.github/ISSUE_TEMPLATE/` — with Issues disabled the forms are
+   unreachable.
+9. Delete `docs/TEMPLATE.md` and the pointer line in `README.md`; `git grep '{{'`
    must then return nothing.
