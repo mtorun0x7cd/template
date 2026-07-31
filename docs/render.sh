@@ -12,6 +12,10 @@
 # Served PNGs are committed because GitHub serves the raw files with no build step;
 # this script is their recorded, reproducible source. Intermediates stay in
 # .tmp.nosync/. Requires: node, ImageMagick (magick), Google Chrome.
+#
+# Nothing re-renders the PNGs automatically: any edit to docs/social_preview.svg
+# must be committed together with the rasters this script produces from it, or the
+# served images silently contradict their source.
 set -euo pipefail
 
 _on_err() { local ec=$? line=${1:-?} cmd=${2:-?}; echo "render.sh: error on line ${line} (exit ${ec}): ${cmd}" >&2; exit "${ec}"; }
