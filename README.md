@@ -28,7 +28,7 @@ Using this template? See [`docs/TEMPLATE.md`](docs/TEMPLATE.md) for the placehol
 | | |
 | --- | --- |
 | **Author** | Mert Torun, M.Sc. |
-| **Program** | Computer Science & Engineering (Technische Informatik) |
+| **Program** | Computer Science & Engineering (Technische Informatik), TH Köln |
 | **Context** | {{CONTEXT}} |
 
 ## Features
