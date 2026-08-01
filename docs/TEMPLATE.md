@@ -3,7 +3,7 @@
 This repository is a project template. When you create a new repository from it,
 replace the placeholder tokens below and complete the setup steps. Tokens use the
 `{{UPPER_SNAKE}}` form and appear in `README.md`, `CITATION.cff`, `SECURITY.md`,
-`LICENSE`, and `docs/social_preview.svg`.
+`LICENSE`, `docs/social_preview.svg`, and `.github/ISSUE_TEMPLATE/config.yml`.
 
 ## Placeholder tokens
 
@@ -34,7 +34,7 @@ them explicitly.
 ## Setup steps
 
 1. Replace every `{{TOKEN}}` across `README.md`, `CITATION.cff`, `SECURITY.md`,
-   `LICENSE`, and `docs/social_preview.svg`.
+   `LICENSE`, `docs/social_preview.svg`, and `.github/ISSUE_TEMPLATE/config.yml`.
 2. Rewrite `SECURITY.md`'s four sections — Status, Fitness for use, Known
    limitations, Reporting — as statements of fact about this project, and prune
    the trailing guidance comments in `.editorconfig`, `.gitattributes`, and
