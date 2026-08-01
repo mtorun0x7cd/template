@@ -59,5 +59,8 @@ them explicitly.
    for an archive; leave Wiki, Projects, and Discussions off unless used. For an
    archive, delete `.github/ISSUE_TEMPLATE/` — with Issues disabled the forms are
    unreachable.
-9. Delete `docs/TEMPLATE.md` and the pointer line in `README.md`; `git grep '{{'`
-   must then return nothing.
+9. Delete `docs/TEMPLATE.md` and the pointer line in `README.md`. Then
+   `git grep -I '{{' -- ':!.github/workflows'` must return nothing: `-I` skips the
+   binary previews, whose compressed bytes match the pattern by chance, and the
+   pathspec skips the workflows, where `${{ ... }}` is GitHub Actions expression
+   syntax rather than a placeholder.
