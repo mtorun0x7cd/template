@@ -1,29 +1,36 @@
 # Contributing
 
-This is an **active project**. Factual corrections and contributions are
-welcome. If this repository is published as a frozen archive of completed work,
-replace this file's stance accordingly: an archive is preserved as a record and
-does not accept feature contributions.
+<!-- TEMPLATE: state the stance of the project. An active project takes contributions; a finished one is kept as a record and takes corrections only. -->
 
-## Local setup
-
-Enable the staged-secret scan once per clone with
-`git config core.hooksPath .githooks`; it requires the `gitleaks` CLI.
+This template is maintained by its author. Corrections and proposals are welcome.
 
 ## Reporting
 
-- **Security or integrity issues:** follow [`SECURITY.md`](SECURITY.md).
-- **Factual corrections** (a broken link, a documentation error): open a concise
-  issue where issues are enabled, or contact the author below.
+- **Security matters** follow [`SECURITY.md`](SECURITY.md).
+- **Factual corrections**, such as a broken link or an error in the documentation: open an issue where issues are enabled, or write to the address below.
 
-Pull requests are welcome. Keep them focused, and open an issue first for any
-change large enough to warrant discussion.
+## Pull requests
 
-## Citation
+Keep a pull request to one subject. Where issues are enabled, open one first for a change large enough to need discussion. Pull requests are squash-merged, so the commits inside one need no signature.
 
-If you reference this work, please cite it via the metadata in
-[`CITATION.cff`](CITATION.cff).
+## Commits
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/), in English and ASCII, with the subject in the imperative.
+
+## Checks
+
+The Markdown lint of `docs.yml` runs locally with the same version and rules:
+
+```bash
+npx --yes markdownlint-cli2@0.23.3 "**/*.md"
+```
+
+The pre-commit hook scans the staged changes for secrets with the rules of `.gitleaks.toml`. Enable it once per clone; it requires the `gitleaks` command line tool:
+
+```bash
+git config core.hooksPath .githooks
+```
 
 ## Contact
 
-Mert Torun, M.Sc. — <info@mtorun0x7cd.com> · <https://mtorun0x7cd.com>
+Mert Torun, M.Sc.: <info@mtorun0x7cd.com> · <https://mtorun0x7cd.com>
