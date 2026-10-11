@@ -1,0 +1,96 @@
+# SPDX-FileCopyrightText: 2026 Mert Torun
+# SPDX-License-Identifier: MIT
+
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  metadata:
+    name: Citation metadata
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install the validators
+        run: |
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --disable-pip-version-check cffconvert==2.0.0 PyYAML==6.0.2
+
+      - name: Validate CITATION.cff with cffconvert
+        run: |
+          "$RUNNER_TEMP/venv/bin/cffconvert" --validate
+
+      # A plain YAML loader turns an unquoted date into a date object, which
+      # the schema refuses; this step reads the file the way such a loader does.
+      - name: Validate CITATION.cff against schema 1.2.0 through a plain YAML loader
+        run: |
+          "$RUNNER_TEMP/venv/bin/python" - <<'PYEOF'
+          import json, pathlib
+          import cffconvert, jsonschema, yaml
+          schema_path = pathlib.Path(cffconvert.__file__).parent / "schemas" / "1.2.0" / "schema.json"
+          schema = json.loads(schema_path.read_text(encoding="utf-8"))
+          data = yaml.safe_load(pathlib.Path("CITATION.cff").read_text(encoding="utf-8"))
+          jsonschema.validate(data, schema)
+          print("CITATION.cff holds schema 1.2.0 as a plain YAML loader reads it")
+          PYEOF
+
+  placeholders:
+    name: Placeholders
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # The start page is the first thing a visitor reads; no placeholder of
+      # the skeleton may reach it, in the template or in a repository made
+      # from it. grep exits 0 on a match, 1 on none and 2 on an error.
+      - name: Check that README.md carries no placeholder
+        run: |
+          rc=0
+          grep -nE '\{\{[A-Z0-9_]+\}\}' README.md || rc=$?
+          case "$rc" in
+            0) echo "README.md carries the placeholders above"; exit 1 ;;
+            1) echo "README.md carries no placeholder" ;;
+            *) echo "grep failed with exit code $rc"; exit 2 ;;
+          esac
+
+      # In a repository created from the template, the setup is done once
+      # docs/TEMPLATE.md and the skeleton are gone and no file carries a
+      # placeholder, a TEMPLATE marker or the name of the template. This
+      # file names all three, so it is left out of the search.
+      - name: Check that the setup of a new repository is complete
+        if: github.repository != 'mtorun0x7cd/template'
+        run: |
+          status=0
+          for path in docs/TEMPLATE.md docs/README.template.md; do
+            if [ -e "$path" ]; then echo "$path is still present"; status=1; fi
+          done
+          rc=0
+          git grep -nIE '\{\{[A-Z0-9_]+\}\}|TEMPLATE:|mtorun0x7cd/template' -- ':(exclude).github/workflows/checks.yml' || rc=$?
+          case "$rc" in
+            0) echo "the lines above still carry template text"; status=1 ;;
+            1) ;;
+            *) echo "git grep failed with exit code $rc"; exit 2 ;;
+          esac
+          if [ "$status" -eq 0 ]; then echo "no placeholder and no template text is left"; fi
+          exit "$status"
