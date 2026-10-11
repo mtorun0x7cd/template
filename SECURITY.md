@@ -1,23 +1,33 @@
-# Security Policy
+# Security policy
 
-## Status
+## Scope
 
-{{PROJECT_NAME}} is an academic/engineering project by Mert Torun, M.Sc.
-State its current status here (active, or archived as of a given date).
+<!-- TEMPLATE: say what this repository holds and runs, and which versions receive security fixes. -->
 
-## Fitness for use
+This repository is a template for new repositories. It ships no software for use: it holds documentation, configuration, a pre-commit hook and workflows, which every repository created from it inherits. Only the current state of the default branch is maintained; there are no versions.
 
-State plainly whether the project is intended for production use. Academic and
-demonstration projects generally are not, and should say so.
+## What to report privately
 
-## Known limitations
+<!-- TEMPLATE: list what should not be reported in public for this project. -->
 
-Document known security-relevant limitations honestly. If the project ships
-development-only credentials or defaults (for a disposable local or CI instance),
-name them here as non-secrets and explain why they are safe in that context.
+- A secret, a credential or personal data committed to this repository by mistake, in a file or in the history.
+- A weakness of the workflows under `.github/` or of the hook under `.githooks/` that could let someone change what this repository, or a repository created from it, runs or publishes.
+- An action pinned here at a version with a published vulnerability.
 
-## Reporting
+## How to report
 
-Report security issues to [info@mtorun0x7cd.com](mailto:info@mtorun0x7cd.com).
-There is no guaranteed fix timeline; for archived projects, no further updates
-are issued.
+<!-- TEMPLATE: keep both routes only where private vulnerability reporting is enabled. -->
+
+Use GitHub's private vulnerability reporting (the tab Security, then Report a vulnerability), or write to [info@mtorun0x7cd.com](mailto:info@mtorun0x7cd.com), naming the file, the problem and how to see it. Do not open a public issue for it.
+
+## What is not a vulnerability
+
+<!-- TEMPLATE: name the design limits and the development-only defaults of the project. -->
+
+The placeholders in the template files are not values. A placeholder that has the form of a credential, such as `<api-token>`, is documented as one in [`.gitleaks.toml`](.gitleaks.toml). A weakness of an action itself belongs to the repository of that action.
+
+## What to expect
+
+<!-- TEMPLATE: state what a reporter can expect, without promising a response time. -->
+
+Reports are read. A reply or a fix is not guaranteed.
