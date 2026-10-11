@@ -1,7 +1,10 @@
-# Instances add the update block(s) for the stack they actually carry (pip, maven,
-# npm, nuget, composer, ...); github-actions is present in every repo. Frozen
-# coursework archives stay github-actions-only by policy — Dependabot does not run
-# version updates on archived repositories, so a manifest block there would be inert.
+# SPDX-FileCopyrightText: 2026 Mert Torun
+# SPDX-License-Identifier: MIT
+
+# Every repository keeps the github-actions block, which updates the pinned
+# actions. A project adds one block for each package ecosystem it carries (pip,
+# maven, npm, nuget, composer, ...); a finished project kept as a record keeps
+# the github-actions block alone.
 version: 2
 updates:
   - package-ecosystem: github-actions
