@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SPDX-FileCopyrightText: 2026 Mert Torun
+  SPDX-License-Identifier: MIT
+
+  Social card of this repository, 1280 x 640. render.sh writes social-card.png
+  from this file. A repository created from the template rewrites the title,
+  the description and the three lines of text for its project.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="card-title card-desc">
+  <title id="card-title">Project template</title>
+  <desc id="card-desc">A starting point for new repositories. github.com/mtorun0x7cd/template</desc>
+  <rect width="1280" height="640" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="24" height="640" fill="#2563EB"/>
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <text x="112" y="276" font-size="76" font-weight="700" fill="#0F172A">Project template</text>
+    <text x="112" y="372" font-size="40" font-weight="400" fill="#475569">A starting point for new repositories</text>
+    <text x="112" y="444" font-size="40" font-weight="500" fill="#1D4ED8">github.com/mtorun0x7cd/template</text>
+  </g>
+</svg>
