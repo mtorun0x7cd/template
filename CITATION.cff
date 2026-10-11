@@ -8,12 +8,13 @@ authors:
   - given-names: Mert
     family-names: Torun
     email: info@mtorun0x7cd.com
-    affiliation: TH Köln
-version: 1.0.0
+    affiliation: Technische Hochschule Köln
+    orcid: "https://orcid.org/0009-0003-7932-9043"
 license: MIT
-repository-code: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
-url: https://github.com/mtorun0x7cd/{{REPO_SLUG}}
+repository-code: "https://github.com/mtorun0x7cd/{{REPO_SLUG}}"
 keywords:
   - "{{KEYWORDS}}"
+# Add version and date-released at the first release, both taken from its tag;
+# a repository without releases carries neither.
 # Add a preferred-citation block of type article/conference-paper only when an
 # accompanying publication exists.
