@@ -1,81 +1,64 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/social_preview_dark.png" />
-    <source media="(prefers-color-scheme: light)" srcset="docs/social_preview_light.png" />
-    <img src="docs/social_preview_light.png" alt="{{PROJECT_NAME}}" width="880" />
-  </picture>
-</p>
+<!--
+SPDX-FileCopyrightText: 2026 Mert Torun
+SPDX-License-Identifier: MIT
+-->
 
-# {{PROJECT_NAME}}
+# Project template
 
-> {{TAGLINE}}
+A GitHub repository template for my projects. A repository created from it starts with the files each of them carries: a README skeleton, citation metadata in the Citation File Format, a security policy, contribution notes, an issue form, Dependabot updates for the pinned actions, workflows for Markdown lint, citation metadata and a secret scan, an opt-in pre-commit secret scan, and a social card with the script that renders it. The author, the copyright holder and the contact address in these files are mine; whoever else uses the template replaces them as well.
 
-Using this template? See [`docs/TEMPLATE.md`](docs/TEMPLATE.md) for the placeholder tokens and instantiation steps.
+[![License: MIT](https://img.shields.io/badge/License-MIT-1D4ED8?style=flat)](LICENSE)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-{{STATUS}}-2563eb?style=for-the-badge" alt="Status" />
-  <img src="https://img.shields.io/badge/License-MIT-2563eb?style=for-the-badge" alt="License: MIT" />
-</p>
+## Usage
 
----
+1. Select **Use this template** on this page and create the new repository.
+2. Follow the steps in [`docs/TEMPLATE.md`](docs/TEMPLATE.md): the skeleton `docs/README.template.md` replaces this README, every placeholder is filled, the security policy and the contribution notes are rewritten for the project, and the repository settings are set.
+3. Remove `docs/TEMPLATE.md` as its last step says; the workflow `checks.yml` then confirms that no placeholder and no template text is left.
 
-## Overview
+## Contents
 
-{{ABSTRACT}}
+| Path | Content | In a new repository |
+| --- | --- | --- |
+| `README.md` | this page | replaced by the skeleton |
+| `docs/README.template.md` | the README skeleton: title, tagline, badge row, and the sections from Overview to Contact | moved over `README.md` and filled |
+| `docs/TEMPLATE.md` | the placeholders, the setup steps and the list of repository settings | removed when the setup is done |
+| `CITATION.cff` | citation metadata, Citation File Format 1.2.0, without a version | filled; a version is added at the first release |
+| `LICENSE` | the MIT License | the year filled |
+| `SECURITY.md` | the security policy of this template, in five sections | rewritten for the project |
+| `CONTRIBUTING.md` | how to report, propose and check a change | rewritten for the project |
+| `.github/ISSUE_TEMPLATE/` | an issue form for factual corrections, and a link to the security policy | the repository name filled |
+| `.github/workflows/` | `ci.yml`, a build and a release job as stubs; `docs.yml`, Markdown lint; `checks.yml`, citation metadata and placeholders; `secret-scan.yml`, gitleaks over the history | build and test steps added to `ci.yml` |
+| `.github/dependabot.yml` | monthly updates of the pinned actions | the package ecosystems of the project added |
+| `.github/FUNDING.yml` | the sponsor links | kept or removed |
+| `.githooks/pre-commit` | a gitleaks scan of the staged changes, enabled per clone | kept |
+| `.gitleaks.toml` | the gitleaks rules: the default set, and an allowlist for documented placeholders | allowlist extended where needed |
+| `.editorconfig`, `.gitattributes`, `.gitignore`, `.markdownlint.jsonc` | editor, git and Markdown lint configuration | trimmed to the toolchain |
+| `docs/social/` | the social card of this template as SVG and PNG, and `render.sh`, which renders it with rsvg-convert | the card rewritten and rendered |
 
-## Context
+## Checks
 
-| | |
-| --- | --- |
-| **Author** | Mert Torun, M.Sc. |
-| **Program** | Computer Science & Engineering (Technische Informatik), TH Köln |
-| **Context** | {{CONTEXT}} |
+Besides the stubs of `ci.yml`, every push to `main` and every pull request runs three checks:
 
-## Features
+- `docs.yml` lints the Markdown files with markdownlint-cli2 and the rules of [`.markdownlint.jsonc`](.markdownlint.jsonc);
+- `checks.yml` validates `CITATION.cff` with cffconvert and against schema 1.2.0 through a plain YAML loader, and fails if `README.md` carries a placeholder; in a repository created from the template, it also fails while any file still carries a placeholder or template text;
+- `secret-scan.yml` scans the whole history with gitleaks and the rules of [`.gitleaks.toml`](.gitleaks.toml).
 
-- {{FEATURE}}
+Every action is pinned to a full commit SHA, markdownlint-cli2 and cffconvert to a version, and gitleaks to a version and its SHA-256. Each workflow grants its token read access to the contents and nothing more; only the release job of `ci.yml`, which runs on a version tag, raises it to write.
 
-## Architecture
+## What it leaves out
 
-{{ARCHITECTURE}}
+- Source code, a build and tests: `ci.yml` holds them as stubs, because they depend on the toolchain of the project.
+- Versions: the template has no tags and no releases, and `CITATION.cff` carries no version. A project adds `version` and `date-released` at its first release.
+- A banner image in the README. The social card serves only as the preview image of links, uploaded under the repository settings.
+- A code of conduct, a pull request template, `REUSE.toml` and `codemeta.json`. A project adds them where it needs them.
 
-## Tech Stack
-
-{{TECH_STACK}}
-
-## Project Structure
-
-```text
-{{TREE}}
-```
-
-## Getting Started
-
-{{GETTING_STARTED}}
-
-## Documentation
-
-{{DOCUMENTATION}}
-
-## References
-
-{{REFERENCES}}
-
-## Citation
-
-If you reference this work, please cite it via the metadata in [`CITATION.cff`](CITATION.cff).
-
-## Security
-
-See [`SECURITY.md`](SECURITY.md) for the security stance and how to report issues.
-
-## License
+## Licence
 
 Released under the [MIT License](LICENSE).
 
 ## Contact
 
-**Mert Torun, M.Sc.** — Verification of Safety-Critical Systems · Information Security  
+**Mert Torun, M.Sc.**: Verification of Safety-Critical Systems · Information Security  
 mtorun0x7cd · Research & Development
 
 - **Email**: [info@mtorun0x7cd.com](mailto:info@mtorun0x7cd.com)
