@@ -22,7 +22,7 @@ A GitHub repository template for my projects. A repository created from it start
 | `README.md` | this page | replaced by the skeleton |
 | `docs/README.template.md` | the README skeleton: title, tagline, badge row, and the sections from Overview to Contact | moved over `README.md` and filled |
 | `docs/TEMPLATE.md` | the placeholders, the setup steps and the list of repository settings | removed when the setup is done |
-| `CITATION.cff` | citation metadata, Citation File Format 1.2.0, without a version | filled; a version is added at the first release |
+| `docs/CITATION.template.cff` | the skeleton of the citation metadata, Citation File Format 1.2.0, without a version; the template itself carries no `CITATION.cff` | moved to `CITATION.cff` and filled; a version is added at the first release |
 | `LICENSE` | the MIT License | the year filled |
 | `SECURITY.md` | the security policy of this template, in five sections | rewritten for the project |
 | `CONTRIBUTING.md` | how to report, propose and check a change | rewritten for the project |
@@ -40,7 +40,7 @@ A GitHub repository template for my projects. A repository created from it start
 Besides the stubs of `ci.yml`, every push to `main` and every pull request runs three checks:
 
 - `docs.yml` lints the Markdown files with markdownlint-cli2 and the rules of [`.markdownlint.jsonc`](.markdownlint.jsonc);
-- `checks.yml` validates `CITATION.cff` with cffconvert and against schema 1.2.0 through a plain YAML loader, and fails if `README.md` carries a placeholder; in a repository created from the template, it also fails while any file still carries a placeholder or template text;
+- `checks.yml` validates `CITATION.cff`, or in the template its skeleton, with cffconvert and against schema 1.2.0 through a plain YAML loader, and fails if `README.md` carries a placeholder; in a repository created from the template, it also fails while any file still carries a placeholder or template text;
 - `secret-scan.yml` scans the whole history with gitleaks and the rules of [`.gitleaks.toml`](.gitleaks.toml).
 
 Every action is pinned to a full commit SHA, markdownlint-cli2 and cffconvert to a version, and gitleaks to a version and its SHA-256. Each workflow grants its token read access to the contents and nothing more; only the release job of `ci.yml`, which runs on a version tag, raises it to write.
@@ -48,7 +48,7 @@ Every action is pinned to a full commit SHA, markdownlint-cli2 and cffconvert to
 ## What it leaves out
 
 - Source code, a build and tests: `ci.yml` holds them as stubs, because they depend on the toolchain of the project.
-- Versions: the template has no tags and no releases, and `CITATION.cff` carries no version. A project adds `version` and `date-released` at its first release.
+- Versions: the template has no tags and no releases, and the citation skeleton carries no version. A project adds `version` and `date-released` at its first release.
 - A banner image in the README. The social card serves only as the preview image of links, uploaded under the repository settings.
 - A code of conduct, a pull request template, `REUSE.toml` and `codemeta.json`. A project adds them where it needs them.
 

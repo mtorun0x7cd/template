@@ -15,6 +15,8 @@ SPDX-License-Identifier: MIT
 
 {{ABSTRACT}}
 
+<!-- TEMPLATE: for an archived project whose sources are kept as they were, add a subsection `### Known defects` here, one bullet per defect: what was observed, how it was measured, and on which build. Remove this comment either way. -->
+
 ## Context
 
 | Field | Value |

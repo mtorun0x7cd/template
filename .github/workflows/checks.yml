@@ -31,24 +31,33 @@ jobs:
       - name: Install the validators
         run: |
           python3 -m venv "$RUNNER_TEMP/venv"
-          "$RUNNER_TEMP/venv/bin/pip" install --disable-pip-version-check cffconvert==2.0.0 PyYAML==6.0.2
+          "$RUNNER_TEMP/venv/bin/pip" install --disable-pip-version-check cffconvert==2.0.0 PyYAML==6.0.3
 
-      - name: Validate CITATION.cff with cffconvert
+      # The template carries its skeleton at docs/CITATION.template.cff and no
+      # CITATION.cff; a project carries CITATION.cff after setup step 1.
+      - name: Find the citation file
         run: |
-          "$RUNNER_TEMP/venv/bin/cffconvert" --validate
+          if [ -f CITATION.cff ]; then echo "CFF=CITATION.cff" >> "$GITHUB_ENV"
+          else echo "CFF=docs/CITATION.template.cff" >> "$GITHUB_ENV"; fi
+
+      - name: Validate the citation file with cffconvert
+        run: |
+          "$RUNNER_TEMP/venv/bin/cffconvert" --validate --infile "$CFF"
 
       # A plain YAML loader turns an unquoted date into a date object, which
       # the schema refuses; this step reads the file the way such a loader does.
-      - name: Validate CITATION.cff against schema 1.2.0 through a plain YAML loader
+      - name: Validate the citation file against schema 1.2.0 through a plain YAML loader
         run: |
           "$RUNNER_TEMP/venv/bin/python" - <<'PYEOF'
           import json, pathlib
           import cffconvert, jsonschema, yaml
           schema_path = pathlib.Path(cffconvert.__file__).parent / "schemas" / "1.2.0" / "schema.json"
           schema = json.loads(schema_path.read_text(encoding="utf-8"))
-          data = yaml.safe_load(pathlib.Path("CITATION.cff").read_text(encoding="utf-8"))
+          import os
+          path = pathlib.Path(os.environ["CFF"])
+          data = yaml.safe_load(path.read_text(encoding="utf-8"))
           jsonschema.validate(data, schema)
-          print("CITATION.cff holds schema 1.2.0 as a plain YAML loader reads it")
+          print(f"{path} holds schema 1.2.0 as a plain YAML loader reads it")
           PYEOF
 
   placeholders:

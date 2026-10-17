@@ -24,7 +24,7 @@ Not every placeholder is tokenised. `SECURITY.md` and `CONTRIBUTING.md` are the 
 
 ## Setup steps
 
-1. Replace the README with the skeleton: `git mv -f docs/README.template.md README.md`.
+1. Replace the README with the skeleton and put the citation skeleton in place: `git mv -f docs/README.template.md README.md` and `git mv docs/CITATION.template.cff CITATION.cff`. The template itself carries no `CITATION.cff`, so its page offers no citation of a template.
 2. Replace every `{{TOKEN}}` across `README.md`, `CITATION.cff`, `LICENSE` and `.github/ISSUE_TEMPLATE/config.yml`.
 3. Rewrite `SECURITY.md` and `CONTRIBUTING.md` as statements of fact about this project, section by section, and remove each `TEMPLATE:` comment once its section is written. Prune the trailing guidance comments in `.editorconfig`, `.gitattributes` and `.gitignore` to the toolchain actually present.
 4. Set `{{STATUS}}` to `Active` or `Inactive` and `{{STATUS_SLUG}}` to match, and align `CONTRIBUTING.md`: an active project accepts contributions; an inactive one is kept as a record and takes corrections only.
