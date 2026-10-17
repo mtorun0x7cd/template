@@ -27,7 +27,7 @@ A GitHub repository template for my projects. A repository created from it start
 | `SECURITY.md` | the security policy of this template, in five sections | rewritten for the project |
 | `CONTRIBUTING.md` | how to report, propose and check a change | rewritten for the project |
 | `.github/ISSUE_TEMPLATE/` | an issue form for factual corrections, and a link to the security policy | the repository name filled |
-| `.github/workflows/` | `ci.yml`, a build and a release job as stubs; `docs.yml`, Markdown lint; `checks.yml`, citation metadata and placeholders; `secret-scan.yml`, gitleaks over the history | build and test steps added to `ci.yml` |
+| `.github/workflows/` | `ci.yml`, a build and a release job as stubs, the release created as a draft and published only once its files match the build; `docs.yml`, Markdown lint; `checks.yml`, citation metadata and placeholders; `secret-scan.yml`, gitleaks over the history | build and test steps added to `ci.yml` |
 | `.github/dependabot.yml` | monthly updates of the pinned actions | the package ecosystems of the project added |
 | `.github/FUNDING.yml` | the sponsor links | kept or removed |
 | `.githooks/pre-commit` | a gitleaks scan of the staged changes, enabled per clone | kept |

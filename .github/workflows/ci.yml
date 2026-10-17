@@ -54,13 +54,39 @@ jobs:
           persist-credentials: false
       - name: Build deliverables
         run: echo "Rebuild release deliverables into .tmp.nosync/dist/."
-      - name: Publish release
+      # With immutable releases on, a published release takes no further file,
+      # and its tag can neither move nor be used again. The release is therefore
+      # created as a draft, gets its files, and is published only once the files
+      # on GitHub match the build; a build that leaves .tmp.nosync/dist/ empty
+      # stops the job before the draft is created.
+      - name: Create the release as a draft and attach the deliverables
+        id: draft
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
+          draft: true
           files: .tmp.nosync/dist/*
+          fail_on_unmatched_files: true
           # Static body only. Do NOT use generate_release_notes: re-pushing a tag
           # duplicates the changelog.
           body: |
             Release ${{ github.ref_name }}. See the README for documentation.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # GitHub reports the SHA-256 of each attached file as its digest. A file
+      # that is missing, renamed, extra or without a digest leaves the release
+      # a draft.
+      - name: Check the attached files against the build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ steps.draft.outputs.id }}
+        run: |
+          set -euo pipefail
+          (cd .tmp.nosync/dist && sha256sum -- *) | sed 's/^/sha256:/' | sort > "$RUNNER_TEMP/built.txt"
+          gh api --paginate "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID/assets" \
+            --jq '.[] | "\(.digest)  \(.name)"' | sort > "$RUNNER_TEMP/attached.txt"
+          diff -u "$RUNNER_TEMP/built.txt" "$RUNNER_TEMP/attached.txt"
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ steps.draft.outputs.id }}
+        run: gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" -F draft=false --jq .html_url
