@@ -8,8 +8,8 @@ This repository is a project template. When you create a new repository from it,
 | --- | --- |
 | `{{PROJECT_NAME}}` | Human-readable project title. |
 | `{{TAGLINE}}` | One-line summary shown under the title. |
-| `{{STATUS}}` | Status badge text: `Active` or `Inactive`, the two values of repostatus.org this template uses. |
-| `{{STATUS_SLUG}}` | The same status in lower case, `active` or `inactive`; it completes the badge's link to repostatus.org. |
+| `{{STATUS}}` | Status badge text: `WIP`, `Active` or `Inactive`, the three values of repostatus.org this template uses. `WIP` until a first stable, usable release; `Active` claims that release, so a repository holding only a design stays at `WIP`. |
+| `{{STATUS_SLUG}}` | The same status in lower case, `wip`, `active` or `inactive`; it completes the badge's link to repostatus.org. |
 | `{{YEAR}}` | The years of the work in `LICENSE`, as a comma-separated list: `2026`, or `2021, 2026` for work begun earlier. |
 | `{{CONTEXT}}` | Course, thesis, or research context. |
 | `{{ABSTRACT}}` | Short abstract, in the README's Overview and in `CITATION.cff`. |
@@ -27,7 +27,7 @@ Not every placeholder is tokenised. `SECURITY.md` and `CONTRIBUTING.md` are the 
 1. Replace the README with the skeleton and put the citation skeleton in place: `git mv -f docs/README.template.md README.md` and `git mv docs/CITATION.template.cff CITATION.cff`. The template itself carries no `CITATION.cff`, so its page offers no citation of a template.
 2. Replace every `{{TOKEN}}` across `README.md`, `CITATION.cff`, `LICENSE` and `.github/ISSUE_TEMPLATE/config.yml`.
 3. Rewrite `SECURITY.md` and `CONTRIBUTING.md` as statements of fact about this project, section by section, and remove each `TEMPLATE:` comment once its section is written. Prune the trailing guidance comments in `.editorconfig`, `.gitattributes` and `.gitignore` to the toolchain actually present.
-4. Set `{{STATUS}}` to `Active` or `Inactive` and `{{STATUS_SLUG}}` to match, and align `CONTRIBUTING.md`: an active project accepts contributions; an inactive one is kept as a record and takes corrections only.
+4. Set `{{STATUS}}` to `WIP`, `Active` or `Inactive` and `{{STATUS_SLUG}}` to match, and align `CONTRIBUTING.md`: a project in progress or active accepts contributions; an inactive one is kept as a record and takes corrections only.
 5. Rewrite the title, the description and the three lines of text in `docs/social/social-card.svg` for the project, render the card with `./docs/social/render.sh` (requires `rsvg-convert`), and commit the SVG and the PNG together. The README shows no banner; the card is only the preview image of links, uploaded in step 8.
 6. Add the project's package ecosystems to `.github/dependabot.yml` and the build and test steps to `.github/workflows/ci.yml`.
 7. Confirm the licence. MIT is the default and is stated in four places: `LICENSE`, the README badge, the README's Licence section, and the `license:` field of `CITATION.cff`. A project under a different licence must change all four; the value is untokenised, so no `{{...}}` search catches a missed one. Set the year of the `SPDX-FileCopyrightText` line in each file that carries one (`git grep -ln SPDX-FileCopyrightText`) to the years of the project.
