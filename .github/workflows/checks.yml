@@ -20,7 +20,7 @@ permissions:
 jobs:
   metadata:
     name: Citation metadata
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     steps:
       - name: Check out the repository
@@ -47,7 +47,7 @@ jobs:
 
   reuse:
     name: Licensing information
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     steps:
       - name: Check out the repository
@@ -67,7 +67,7 @@ jobs:
 
   placeholders:
     name: Placeholders
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
       - name: Check out the repository
