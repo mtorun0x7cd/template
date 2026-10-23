@@ -1,0 +1,28 @@
+version = 1
+
+# Licensing information, as REUSE 3.3 defines it, for the files that have no
+# room for an SPDX comment or keep their text free of one. Every other file
+# carries its own SPDX-FileCopyrightText and SPDX-License-Identifier lines, and
+# the licence texts stand in LICENSES/. tools/check.sh reuse checks the whole.
+
+# The security policy, the contribution notes and the setup instructions.
+[[annotations]]
+path = ["SECURITY.md", "CONTRIBUTING.md", "docs/TEMPLATE.md"]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Mert Torun"
+SPDX-License-Identifier = "MIT"
+
+# The citation metadata, in the template as a skeleton and in a repository
+# created from it under its own name.
+[[annotations]]
+path = ["CITATION.cff", "docs/CITATION.template.cff"]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Mert Torun"
+SPDX-License-Identifier = "MIT"
+
+# The social card, rendered from social-card.svg by render.sh.
+[[annotations]]
+path = ["docs/social/social-card.png"]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Mert Torun"
+SPDX-License-Identifier = "MIT"
