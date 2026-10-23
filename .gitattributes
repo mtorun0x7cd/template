@@ -8,13 +8,23 @@
 *.md           text eol=lf
 *.cff          text eol=lf
 *.yml          text eol=lf
+*.toml         text eol=lf
+*.jsonc        text eol=lf
+*.sh           text eol=lf
 *.svg          text eol=lf
+*.txt          text eol=lf
 .editorconfig  text eol=lf
 .gitignore     text eol=lf
 .gitattributes text eol=lf
 
 # Binary assets.
 *.png  binary
+
+# The social card and its render script are documentation; the check script
+# and the hook are tooling of the repository. None of them counts as its code.
+docs/**       linguist-documentation
+tools/**      -linguist-detectable
+.githooks/*   -linguist-detectable
 
 # Add source/binary rules for the languages and assets actually present, and
 # remove any rule whose glob matches no tracked file.
