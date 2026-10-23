@@ -49,13 +49,24 @@ repository_name() {
     git remote get-url origin 2>/dev/null | sed -E 's#^.*github\.com[:/]##; s#\.git$##'
 }
 
+# npx also exits 1 when it cannot fetch or start the tool, so an exit code
+# counts only once the pinned markdownlint-cli2 has printed its banner, which
+# opens its standard output.
 check_markdown() {
     if ! command -v npx >/dev/null 2>&1; then
         echo "markdown: npx is not installed; nothing was linted" >&2
         return 2
     fi
-    local rc=0
-    npx --yes "markdownlint-cli2@${MARKDOWNLINT_VERSION}" "**/*.md" || rc=$?
+    local rc=0 report
+    report=$(npx --yes "markdownlint-cli2@${MARKDOWNLINT_VERSION}" "**/*.md") || rc=$?
+    if [ -n "$report" ]; then
+        printf '%s\n' "$report"
+    fi
+    case $report in
+        "markdownlint-cli2 v${MARKDOWNLINT_VERSION} "*) ;;
+        *) echo "markdown: markdownlint-cli2 ${MARKDOWNLINT_VERSION} did not start (exit code $rc); nothing was linted" >&2
+           return 2 ;;
+    esac
     case $rc in
         0) return 0 ;;
         1) echo "markdown: the files above break a rule of .markdownlint.jsonc" >&2; return 1 ;;
@@ -152,16 +163,25 @@ PYEOF
     esac
 }
 
+# Python also exits 1 when reuse crashes, for example on a missing library,
+# so an exit code counts only once reuse has printed its whole report: the
+# JSON report carries the key "non_compliant" and is printed only at the end.
 check_reuse() {
     if ! command -v "$REUSE" >/dev/null 2>&1; then
         echo "reuse: $REUSE is not installed; nothing was checked" >&2
         return 2
     fi
-    local rc=0
-    "$REUSE" lint || rc=$?
+    local rc=0 report
+    report=$("$REUSE" lint --json) || rc=$?
+    case $report in
+        *'"non_compliant":'*) ;;
+        *) echo "reuse: reuse lint gave no report (exit code $rc); nothing was checked" >&2
+           return 2 ;;
+    esac
     case $rc in
-        0) return 0 ;;
-        1) echo "reuse: the files above lack licence or copyright information" >&2; return 1 ;;
+        0) echo "reuse: every file carries its licence and copyright information"; return 0 ;;
+        1) "$REUSE" lint --lines || true
+           echo "reuse: the files above lack licence or copyright information" >&2; return 1 ;;
         *) echo "reuse: reuse failed with exit code $rc" >&2; return 2 ;;
     esac
 }
