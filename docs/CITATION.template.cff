@@ -8,6 +8,8 @@ authors:
   - given-names: Mert
     family-names: Torun
     email: info@mtorun0x7cd.com
+    # Keep the affiliation for work done at the university; remove the line for
+    # independent work, which names no institution.
     affiliation: Technische Hochschule Köln
     orcid: "https://orcid.org/0009-0003-7932-9043"
 license: MIT

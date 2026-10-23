@@ -20,6 +20,8 @@ The README skeleton also carries free-form section tokens filled with prose rath
 
 `CITATION.cff` carries no `version` and no `date-released`. Add both at the first release, taken from its tag, and never before.
 
+The `affiliation` line of the citation skeleton names the university; keep it for work done there and remove it, with its comment, for independent work, which names no institution.
+
 Not every placeholder is tokenised. `SECURITY.md` and `CONTRIBUTING.md` are the template's own texts, and each of their sections opens with an HTML comment starting `TEMPLATE:` that says what to write there. `.editorconfig`, `.gitattributes` and `.gitignore` close with guidance comments, and the social card carries the template's own text. A `{{...}}` search does not find these, so the steps below name them explicitly.
 
 ## Setup steps
