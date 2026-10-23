@@ -15,6 +15,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+*~
 
 # Add language-specific build outputs and dependency directories for the
 # toolchain actually used (e.g. target/, __pycache__/, node_modules/, bin/, obj/).
