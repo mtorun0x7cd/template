@@ -33,6 +33,7 @@ A GitHub repository template for my projects. A repository created from it start
 | `.github/FUNDING.yml` | the sponsor links: GitHub Sponsors and Buy Me a Coffee, and the support page once it is online | kept |
 | `tools/check.sh` | the checks of the workflows, one per argument, with exit status 0 for a pass, 1 for a finding, 2 for a tool error and 3 for a skipped check | extended by the checks of the project |
 | `.githooks/pre-commit` | a gitleaks scan of the staged changes, enabled per clone | kept |
+| `cliff.toml` | the git-cliff configuration that lists the commits by type as release notes | kept |
 | `.gitleaks.toml` | the gitleaks rules: the default set, and an allowlist for documented placeholders | allowlist extended where needed |
 | `.editorconfig`, `.gitattributes`, `.gitignore`, `.markdownlint.jsonc` | editor, git and Markdown lint configuration | trimmed to the toolchain |
 | `docs/social/` | the social card of this template as SVG and PNG, and `render.sh`, which renders it with rsvg-convert | the card rewritten and rendered |
@@ -53,6 +54,7 @@ Every action is pinned to a full commit SHA, markdownlint-cli2, cffconvert and r
 - Versions: the template has no tags and no releases, and the citation skeleton carries no version. A project adds `version` and `date-released` at its first release.
 - A banner image in the README. The social card serves only as the preview image of links, uploaded under the repository settings.
 - A code of conduct, a pull request template and `codemeta.json`. A project adds them where it needs them; `codemeta.json` repeats the citation metadata and so needs a check that both agree.
+- A changelog file. `cliff.toml` writes the release notes from the commit history when they are needed.
 
 ## Licence
 
