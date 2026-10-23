@@ -35,30 +35,35 @@ jobs:
 
       # The template carries its skeleton at docs/CITATION.template.cff and no
       # CITATION.cff; a project carries CITATION.cff after setup step 1.
-      - name: Find the citation file
-        run: |
-          if [ -f CITATION.cff ]; then echo "CFF=CITATION.cff" >> "$GITHUB_ENV"
-          else echo "CFF=docs/CITATION.template.cff" >> "$GITHUB_ENV"; fi
-
       - name: Validate the citation file with cffconvert
         run: |
-          "$RUNNER_TEMP/venv/bin/cffconvert" --validate --infile "$CFF"
+          if [ -f CITATION.cff ]; then cff=CITATION.cff; else cff=docs/CITATION.template.cff; fi
+          "$RUNNER_TEMP/venv/bin/cffconvert" --validate --infile "$cff"
 
-      # A plain YAML loader turns an unquoted date into a date object, which
-      # the schema refuses; this step reads the file the way such a loader does.
       - name: Validate the citation file against schema 1.2.0 through a plain YAML loader
+        env:
+          PYTHON: ${{ runner.temp }}/venv/bin/python
+        run: tools/check.sh citation
+
+  reuse:
+    name: Licensing information
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install reuse
         run: |
-          "$RUNNER_TEMP/venv/bin/python" - <<'PYEOF'
-          import json, pathlib
-          import cffconvert, jsonschema, yaml
-          schema_path = pathlib.Path(cffconvert.__file__).parent / "schemas" / "1.2.0" / "schema.json"
-          schema = json.loads(schema_path.read_text(encoding="utf-8"))
-          import os
-          path = pathlib.Path(os.environ["CFF"])
-          data = yaml.safe_load(path.read_text(encoding="utf-8"))
-          jsonschema.validate(data, schema)
-          print(f"{path} holds schema 1.2.0 as a plain YAML loader reads it")
-          PYEOF
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --disable-pip-version-check reuse==6.2.0
+
+      - name: Check every file for its licence and copyright, as REUSE 3.3 defines it
+        env:
+          REUSE: ${{ runner.temp }}/venv/bin/reuse
+        run: tools/check.sh reuse
 
   placeholders:
     name: Placeholders
@@ -72,34 +77,13 @@ jobs:
 
       # The start page is the first thing a visitor reads; no placeholder of
       # the skeleton may reach it, in the template or in a repository made
-      # from it. grep exits 0 on a match, 1 on none and 2 on an error.
+      # from it.
       - name: Check that README.md carries no placeholder
-        run: |
-          rc=0
-          grep -nE '\{\{[A-Z0-9_]+\}\}' README.md || rc=$?
-          case "$rc" in
-            0) echo "README.md carries the placeholders above"; exit 1 ;;
-            1) echo "README.md carries no placeholder" ;;
-            *) echo "grep failed with exit code $rc"; exit 2 ;;
-          esac
+        run: tools/check.sh readme
 
       # In a repository created from the template, the setup is done once
-      # docs/TEMPLATE.md and the skeleton are gone and no file carries a
-      # placeholder, a TEMPLATE marker or the name of the template. This
-      # file names all three, so it is left out of the search.
+      # docs/TEMPLATE.md and the skeletons are gone and no file carries a
+      # placeholder, a TEMPLATE marker or the name of the template.
       - name: Check that the setup of a new repository is complete
         if: github.repository != 'mtorun0x7cd/template'
-        run: |
-          status=0
-          for path in docs/TEMPLATE.md docs/README.template.md; do
-            if [ -e "$path" ]; then echo "$path is still present"; status=1; fi
-          done
-          rc=0
-          git grep -nIE '\{\{[A-Z0-9_]+\}\}|TEMPLATE:|mtorun0x7cd/template' -- ':(exclude).github/workflows/checks.yml' || rc=$?
-          case "$rc" in
-            0) echo "the lines above still carry template text"; status=1 ;;
-            1) ;;
-            *) echo "git grep failed with exit code $rc"; exit 2 ;;
-          esac
-          if [ "$status" -eq 0 ]; then echo "no placeholder and no template text is left"; fi
-          exit "$status"
+        run: tools/check.sh setup

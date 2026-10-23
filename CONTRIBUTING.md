@@ -19,10 +19,10 @@ Commit messages follow [Conventional Commits](https://www.conventionalcommits.or
 
 ## Checks
 
-The Markdown lint of `docs.yml` runs locally with the same version and rules:
+The workflows run their checks through `tools/check.sh`, which runs them locally the same way, one per argument or all of them without one. It ends with 0 when every check holds, 1 on a finding and 2 when a tool is missing or fails:
 
 ```bash
-npx --yes markdownlint-cli2@0.23.3 "**/*.md"
+tools/check.sh
 ```
 
 The pre-commit hook scans the staged changes for secrets with the rules of `.gitleaks.toml`. Enable it once per clone; it requires the `gitleaks` command line tool:
