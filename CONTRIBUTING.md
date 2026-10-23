@@ -19,7 +19,7 @@ Commit messages follow [Conventional Commits](https://www.conventionalcommits.or
 
 ## Checks
 
-The workflows run their checks through `tools/check.sh`, which runs them locally the same way, one per argument or all of them without one. It ends with 0 when every check holds, 1 on a finding and 2 when a tool is missing or fails:
+The workflows run their checks through `tools/check.sh`, which runs them locally the same way, one per argument or all of them without one. It ends with 0 when every check holds, 1 on a finding, 2 when a tool is missing or fails, so that nothing was checked, and 3 when a check is skipped, as `setup` is in the template itself:
 
 ```bash
 tools/check.sh
