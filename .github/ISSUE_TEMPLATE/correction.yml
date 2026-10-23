@@ -3,6 +3,7 @@
 
 name: Factual correction or broken link
 description: Report a factual error, broken link, or documentation issue.
+title: "Correction: "
 labels: ["documentation"]
 body:
   - type: markdown
@@ -22,5 +23,12 @@ body:
     attributes:
       label: Correction
       description: What is incorrect, and what should it say instead?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: A source, a measurement or a passage that supports the correction.
     validations:
       required: true
