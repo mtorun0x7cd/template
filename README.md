@@ -65,6 +65,7 @@ Released under the [MIT License](LICENSE).
 **Mert Torun, M.Sc.**: Verification of Safety-Critical Systems · Information Security  
 mtorun0x7cd · Research & Development
 
+- **Website**: [mtorun0x7cd.com](https://mtorun0x7cd.com)
 - **Email**: [info@mtorun0x7cd.com](mailto:info@mtorun0x7cd.com)
 - **LinkedIn**: [linkedin.com/in/mtorun0x7cd](https://www.linkedin.com/in/mtorun0x7cd)
 - **ORCID**: [orcid.org/0009-0003-7932-9043](https://orcid.org/0009-0003-7932-9043)
