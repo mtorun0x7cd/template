@@ -30,7 +30,7 @@ A GitHub repository template for my projects. A repository created from it start
 | `.github/ISSUE_TEMPLATE/` | an issue form for factual corrections, and a link to the security policy | the repository name filled |
 | `.github/workflows/` | `ci.yml`, a build and a release job as stubs, the release created as a draft and published only once its files match the build; `docs.yml`, Markdown lint; `checks.yml`, citation metadata, licensing information and placeholders; `secret-scan.yml`, gitleaks over the history | build and test steps added to `ci.yml` |
 | `.github/dependabot.yml` | monthly updates of the pinned actions | the package ecosystems of the project added |
-| `.github/FUNDING.yml` | the sponsor links | kept or removed |
+| `.github/FUNDING.yml` | the sponsor links: GitHub Sponsors and Buy Me a Coffee, and the support page once it is online | kept |
 | `tools/check.sh` | the checks of the workflows, one per argument, with exit status 0 for a pass, 1 for a finding, 2 for a tool error and 3 for a skipped check | extended by the checks of the project |
 | `.githooks/pre-commit` | a gitleaks scan of the staged changes, enabled per clone | kept |
 | `.gitleaks.toml` | the gitleaks rules: the default set, and an allowlist for documented placeholders | allowlist extended where needed |

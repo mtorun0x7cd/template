@@ -36,7 +36,7 @@ Not every placeholder is tokenised. `SECURITY.md` and `CONTRIBUTING.md` are the 
 8. Configure the repository settings:
    - **Description:** one sentence on what the repository holds, without a dash. **Homepage:** `https://mtorun0x7cd.com`. **Topics:** accurate ones only, at most 20.
    - **Social preview** (Settings, General): upload `docs/social/social-card.png`.
-   - **Features** (Settings, General): Wiki, Projects and Discussions off unless used. Issues on for an active project and off for an inactive one; with Issues off, delete `.github/ISSUE_TEMPLATE/`, whose forms are then unreachable. Sponsorships as the project needs them.
+   - **Features** (Settings, General): Wiki, Projects and Discussions off unless used. Issues on for an active project and off for an inactive one; with Issues off, delete `.github/ISSUE_TEMPLATE/`, whose forms are then unreachable. Sponsorships on, so that `.github/FUNDING.yml` shows the Sponsor button.
    - **Pull requests** (Settings, General): allow squash merging only. GitHub adds rebase-merged commits without a signature, so the signature rule below would refuse them.
    - **Rulesets** (Settings, Rulesets): one on the default branch that restricts deletions, blocks force pushes, requires signed commits and a linear history, with no bypass; one on `refs/tags/v*` that restricts updates and deletions and blocks force pushes, and leaves creations free.
    - **Code security** (Settings, Advanced Security): secret scanning and push protection on, private vulnerability reporting on (`SECURITY.md` names it), Dependabot alerts on.
